@@ -1,0 +1,101 @@
+= Startup.Spock
+:toc:
+
+== 手順
+
+=== 手順1. cloneしたら次のコマンドを実行して、成功することを確認します。
+
+----
+./gradle build
+----
+
+次と似たような出力が出れば次の手順に進みましょう。
+
+----
+Parallel execution with configuration on demand is an incubating feature.
+:compileJava NO-SOURCE
+:compileGroovy
+:processResources NO-SOURCE
+:classes
+:jar
+:assemble
+:compileTestJava NO-SOURCE
+:compileTestGroovy
+:processTestResources NO-SOURCE
+:testClasses
+:test
+:check
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 3.998 secs
+----
+
+もし、 `gradle` コマンドが見つからないようなエラーがでている場合は、次のコマンドをためしてみてください。
+
+----
+./gradlew build
+----
+
+
+
+=== 手順2. src/test/groovy/example/startup/WhenSteppingOut.groovyのコメントアウトを外して保存します。
+. 16行目、17行目の `// ` を削除して、16行目と17行目が動作する状態にします。
+
+=== 手順3. 次のコマンドを実行して、テストが失敗することを確認します。
+----
+./gradle build
+----
+
+次と似たような出力が出れば次の手順に進んでください。
+----
+Parallel execution with configuration on demand is an incubating feature.
+:compileJava NO-SOURCE
+:compileGroovy UP-TO-DATE
+:processResources NO-SOURCE
+:classes UP-TO-DATE
+:jar UP-TO-DATE
+:assemble UP-TO-DATE
+:compileTestJava NO-SOURCE
+:compileTestGroovy
+:processTestResources NO-SOURCE
+:testClasses
+:test
+
+example.startup.WhenSteppingOut > someLibraryMethod returns true FAILED
+    org.spockframework.runtime.SpockComparisonFailure at WhenSteppingOut.groovy:17
+
+1 test completed, 1 failed
+:test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/kyon_mm/.ghq/github.com/kyonmm/startup-spock/build/reports/tests/test/index.html
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 4.251 secs
+----
+
+
+もし、 `gradle` コマンドが見つからないようなエラーがでている場合は、次のコマンドをためしてみてください。
+
+----
+./gradlew build
+----
+
+=== 手順4. IntelliJ IDEAでこのプロジェクトを開きます。
+
+. IntelliJ IDEAを起動します。
+.. 初回起動時に設定ウィザードが出てきます。全てデフォルトのまま進めてください。
+.. 画面右下の `Configure` -> `Project Defaults` -> `Project Structure` を選択してください。
+... `No SDK` となっている場合は、 `New` -> `JDK` を選択し、インストールしている Javaのパスを指定し、全てOKで設定を終了してください。
+. `Import Project` でこのプロジェクトを保存してあるディレクトリの `build.gradle` ファイルを選択します。
+.. `Import Project from Gradle` という画面がでたら、OKを押します。2分間ほど待ちます。
+.. メニューバーから `Build` -> `Build Project` を選択して、成功することを確認します。
