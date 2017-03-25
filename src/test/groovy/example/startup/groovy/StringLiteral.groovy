@@ -65,4 +65,9 @@ bbb/$
     String actual_no_escape = $/この文字列を編集して、成功させてね！/$.stripMargin("|")
     assert actual_no_escape == "aaa\\abbb\\ccc\nddd"
   }
+  @Test
+  void "/で囲んでも文字列にできるし、バックスラッシュはエスケープされない"(){
+    assert "target-\\n-string" == /target-\n-string/
+    assert "\\-\\-string" == /この文字列を編集して、成功させてね！/
+  }
 }
