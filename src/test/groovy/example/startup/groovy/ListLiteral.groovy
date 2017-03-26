@@ -26,6 +26,6 @@ class ListLiteral {
     assert actual[0][0] == "c1.1"
     assert actual[1] == ["c2.1", "c2.2"]
     assert actual[2][1] == "c3.1"
-    assert actual.size() == 2
+    assert actual.size() == 3
   }
 }

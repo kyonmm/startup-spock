@@ -91,7 +91,7 @@ class SpockLabel extends Specification{
 
   def "notThrownで例外が投げられていないことを検査できるよ"(){
     when:
-    throw new NullPointerException("別の例外にするか、例外をなげないようにしてね")
+    throw new NullPointerException("例外をなげないようにしてね")
 
     then:
     notThrown(NullPointerException)

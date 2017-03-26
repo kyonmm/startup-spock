@@ -94,14 +94,14 @@ class Collection {
   @Test
   void collectEntryはmap生成(){
     [1,2,3].collectEntries {
-      ["k$it":it]
+      [("k$it".toString()):it]
     }.each{
       println it
     }
     List<String> actual = ["a"]
     assert actual.size() == 3
     assert actual.collectEntries {
-      ["ここも編集して成功させてね${UUID.randomUUID()}":UUID.randomUUID()]
+      [("ここも編集して成功させてね${UUID.randomUUID()}".toString()):UUID.randomUUID()]
     }.keyGroovy == "Groovy"
   }
 }

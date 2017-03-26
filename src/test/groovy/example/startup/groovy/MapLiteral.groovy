@@ -33,7 +33,7 @@ class MapLiteral {
   @Test
   void マップリテラルで宣言します_入れ子(){
     Map<String, Map<String, Integer>> actual = [p1:[c1:1, c2:2]]
-    assert actual.p1 == [c1:1, c2:2]
+    assert actual.p1 == [c1:1, c2:2, c3:3]
     assert actual.p1.c3 == 3
     assert actual.p2.c5 == 5
     assert actual.size() == 3
