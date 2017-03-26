@@ -13,6 +13,7 @@ class Keyword {
     assert a == b
 
     int x = 1
+    def y = 1
     assert x == y
   }
 
@@ -26,9 +27,16 @@ class Keyword {
     return 1
   }
 
+  def newMethod(){
+    return "new-method"
+  }
+
   @Test
   void "メソッド名は文字列で宣言できる"(){
     assert "1みたいな数字ではじまっても大丈夫だよ"() == "test"
   }
 
+  def "1みたいな数字ではじまっても大丈夫だよ"(){
+    return "test"
+  }
 }

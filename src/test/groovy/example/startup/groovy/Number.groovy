@@ -18,8 +18,8 @@ class Number {
       println it
     }
 
-    int start = 1
-    int end = 10
+    int start = 4
+    int end = 6
 
     start.upto(end){
       assert 3 < it

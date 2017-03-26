@@ -28,14 +28,17 @@ class SpockLabel extends Specification{
     then:"1が戻ってくる"
     result1 == "1"
 
-    assert false, "3のときのテストをwhen,thenで新しく追加してね"
+    when:"FizzBuzzに3を渡したとき"
+    def result2 = FizzBuzz.say(3)
+
+    then:"Fizzが戻ってくる"
+    result2 == "Fizz"
   }
 
   def "expectはwhenとthenを一度に実行する"(){
     expect:"FizzBuzzに1を渡したときは1が戻ってくる"
     FizzBuzz.say(1) == "1"
-
-    assert false, "3のときのテストをexpectで新しく追加してね"
+    FizzBuzz.say(3) == "Fizz"
   }
 
   def "whereでパラメタライズドテストができる_expect"(){
@@ -45,7 +48,7 @@ class SpockLabel extends Specification{
     where:
     i | expected
     1 | "1"
-    2 | "edit me"
+    2 | "2"
   }
 
   def "whereでパラメタライズドテストができる_when_then"(){
@@ -58,7 +61,7 @@ class SpockLabel extends Specification{
     where:
     i | expected
     1 | "1"
-    2 | "edit me"
+    2 | "2"
   }
 
   def "whereでパラメタライズドテストができる_Listでもできる"(){
@@ -70,7 +73,7 @@ class SpockLabel extends Specification{
 
     where:
     i << [1, 2, 3]
-    expected << ["1", "edit me", "edit me"]
+    expected << ["1", "2", "Fizz"]
   }
 
   def "thrownでキャッチ"(){
@@ -78,7 +81,7 @@ class SpockLabel extends Specification{
     throw new NullPointerException()
 
     then:
-    assert false, "thrown(NullPointerException)で例外を補足できるよ"
+    thrown(NullPointerException)
   }
 
   def "引数なしthrown()でキャッチ"(){
@@ -86,12 +89,13 @@ class SpockLabel extends Specification{
     throw new NullPointerException("しょうさいだよ")
 
     then:
-    assert false, "NullPointerException ex = thrown()で投げられた例外を変数に補足できるよ"
+    NullPointerException ex = thrown()
+    ex.message == "しょうさいだよ"
   }
 
   def "notThrownで例外が投げられていないことを検査できるよ"(){
     when:
-    throw new NullPointerException("例外をなげないようにしてね")
+    def a = 1
 
     then:
     notThrown(NullPointerException)

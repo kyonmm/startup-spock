@@ -11,7 +11,7 @@ class Collection {
     [1,2,3].each{
       println it
     }
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "b", "c"]
     actual.eachWithIndex { String entry, int i ->
       if(i == 0){
         assert entry == "a"
@@ -34,7 +34,7 @@ class Collection {
       println it
     }
 
-    List<String> actual = ["a"]
+    List<String> actual = ["a is groovy", "b is groovy", "c is groovy"]
     actual.collect {
       it + " is groovy"
     }
@@ -48,7 +48,7 @@ class Collection {
   void every(){
     assert [1,2,3].every{0 < it}
 
-    List<String> actual = ["a"]
+    List<String> actual = ["a12345", "b123456", "c1234567"]
     assert actual.size() == 3
     assert actual.every{5 < it.size()}
   }
@@ -57,7 +57,7 @@ class Collection {
   void any(){
     assert [1,2,3].any{2 < it}
 
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "1234567890","12345678901"]
     assert actual.size() == 3
     assert actual.any{10 < it.size()}
   }
@@ -65,7 +65,7 @@ class Collection {
   void unique(){
     assert [1,2,3,3,3,4].unique() == [1,2,3,4]
 
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "a", "a", "b", "c"]
     assert actual.size() == 5
     assert actual.unique().size() == 3
   }
@@ -73,21 +73,21 @@ class Collection {
   @Test
   void 文字列結合(){
     assert [1,2,3].join("-") == "1-2-3"
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "join", "groovy"]
     assert actual.size() == 3
     assert actual.join("-") == "a-join-groovy"
   }
   @Test
   void JavaのfilterはfindAll(){
     assert [1,2,3].findAll{1 < it} == [2,3]
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "b", "x", "x" ,"xy"]
     assert actual.size() == 5
     assert actual.findAll{it.contains("x")}.size() == 3
   }
   @Test
   void find(){
     println ([1,2,3].find{1 < it})
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "groovy", "java"]
     assert actual.size() == 3
     assert actual.find{it.contains("y")} == "groovy"
   }
@@ -98,10 +98,10 @@ class Collection {
     }.each{
       println it
     }
-    List<String> actual = ["a"]
+    List<String> actual = ["a", "b", "Groovy"]
     assert actual.size() == 3
     assert actual.collectEntries {
-      [("ここも編集して成功させてね${UUID.randomUUID()}".toString()):UUID.randomUUID()]
+      [("key$it".toString()):it]
     }.keyGroovy == "Groovy"
   }
 }
